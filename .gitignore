@@ -1,0 +1,7 @@
+dlib
+__pycache__
+venv
+*.dat
+.idea
+*.pth
+*.rar
