@@ -148,8 +148,8 @@ if __name__ == '__main__':
     HR_Estimator.set_length(args.second)
     HR_Estimator.process.without_wd = args.without_wd
     #print(data_path)
-    #for i in range(0, len(data_path)):
-    for i in range(52, 53):
+    for i in range(0, len(data_path)):
+    #for i in range(52, 53):
     #for i in range(0, 12):
     #for item in data_path:
         #print(i)
