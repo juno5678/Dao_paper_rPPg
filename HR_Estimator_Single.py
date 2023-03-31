@@ -85,6 +85,9 @@ class DAO_HRE():
         frame_count = 0
         while self.running:
             # get input
+            if self.input_mode == 0 or self.input_mode == 1:
+                self.max_input_size = signal_input.frame_length
+
             if self.input_mode == 3 or self.input_mode == 4:  # has nir information
                 color_frame, nir_frame = signal_input.get_frame()  # Read frames from input
             else:
@@ -132,8 +135,9 @@ class DAO_HRE():
                                 self.fragment_bpms.append(0)
                             #print("avg bpm : ", self.avg_bpms)
                             self.avg_bpms = []
-                        if frame_count >= self.max_input_size+1:
-                        #if frame_count >= self.max_input_size:
+                        n = np.floor(self.max_input_size/6)
+                        if frame_count >= n * 6 + 1 :
+                        #if frame_count >= self.max_input_size+1:
                             print('total {} fragment bpm : '.format(len(self.fragment_bpms)), self.fragment_bpms)
                             self.running = False
                             bpm_output = self.fragment_bpms

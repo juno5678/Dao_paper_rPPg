@@ -18,7 +18,7 @@ class Video_RGB(object):
 
         self.cap = cv2.VideoCapture(self.dirname)
         fps = self.cap.get(cv2.CAP_PROP_FPS)
-        self.frame_count = self.cap.get(cv2.CAP_PROP_FRAME_COUNT)
+        self.frame_length = self.cap.get(cv2.CAP_PROP_FRAME_COUNT)
         self.t0 = time.time()
         self.valid = False
         try:

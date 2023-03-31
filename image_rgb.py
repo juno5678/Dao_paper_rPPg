@@ -19,7 +19,7 @@ class Image_RGB(object):
             self.sequence_n = 0
             self.img_list = [img for img in os.listdir(self.dirname) if img.endswith(".png")]
             self.img_list.sort()
-            self.sequence_length = len(self.img_list)
+            self.frame_length = len(self.img_list)
             self.valid = True
             if self.img_list:
                 print("has image sequence")
@@ -33,7 +33,7 @@ class Image_RGB(object):
 
     def get_frame(self):
         if self.valid:
-            if self.sequence_n < self.sequence_length:
+            if self.sequence_n < self.frame_length:
                 frame = cv2.imread(os.path.join(self.dirname, self.img_list[self.sequence_n]))
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 self.sequence_n += 1
