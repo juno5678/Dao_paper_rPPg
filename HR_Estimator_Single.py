@@ -32,6 +32,7 @@ class DAO_HRE():
                               #                3 : realsense video, 4 : realsense camera
         self.output_mode = 0  # output mode  , 0 : estimate single, 1 : estimate sequence, 2 : estimate, 3 : fragment
         self.avg_bpms = []
+        self.interal_frame = 6
 
     def init_input(self):
         if self.input_mode == 0:
@@ -119,12 +120,12 @@ class DAO_HRE():
                 # output fragment result
                 elif self.output_mode == 2:
                     #if frame_count % int(self.buffer_size/2) == 0:
-                    if frame_count % 6 == 0 or frame_count % 6 == 1:
+                    if frame_count % self.interal_frame == 0 or frame_count % self.interal_frame == 1:
                     #if frame_count % 6 == 0:
                         self.avg_bpms.append(bpm)
                         #self.fragment_bpms.append(bpm)
                         #if frame_count % 6 == 1:
-                        if frame_count % 6 == 1:
+                        if frame_count % self.interal_frame == 1:
                             avg_bpm_array = np.array(self.avg_bpms)
                             no_zero_idx = np.where(avg_bpm_array != 0)
                             if len(no_zero_idx[0]) == 2:
@@ -135,8 +136,13 @@ class DAO_HRE():
                                 self.fragment_bpms.append(0)
                             #print("avg bpm : ", self.avg_bpms)
                             self.avg_bpms = []
-                        n = np.floor(self.max_input_size/6)
-                        if frame_count >= n * 6 + 1 :
+
+                        if self.max_input_size % self.interal_frame != 0:
+                            n = np.floor(self.max_input_size / self.interal_frame)
+                        else:
+                            n = np.floor(self.max_input_size / self.interal_frame) - 1
+
+                        if frame_count >= n * self.interal_frame + 1:
                         #if frame_count >= self.max_input_size+1:
                             print('total {} fragment bpm : '.format(len(self.fragment_bpms)), self.fragment_bpms)
                             self.running = False
