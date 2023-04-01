@@ -98,7 +98,7 @@ def get_all_gt(gt_list, gt_path, input_max_length):
         for p in data:
             gt_list.append(p['Value']['pulseRate'])
             count += 1
-            if count == 30*input_max_length:
+            if count == input_max_length:
                 break
 
 
@@ -108,7 +108,7 @@ def get_avg_gt(gt_list, gt_avg_list, window_size, interval):
     for i in range(0, max_length-window_size+1, interval):
         #print(i)
         gt_avg_list.append(np.mean(gt_list[i:i+window_size]))
-
+    #print(" len of gt avg : ", len(gt_avg_list))
 
 if __name__ == '__main__':
 
@@ -191,7 +191,7 @@ if __name__ == '__main__':
             data.update(bpm_data)
 
             # get ground truth
-            get_all_gt(gt_all_data, gt_path[i], 60)
+            get_all_gt(gt_all_data, gt_path[i], HR_Estimator.max_input_size)
 
             if args.output_mode == 1:
                 get_avg_gt(gt_all_data, gt_avg_data, args.second, 1)

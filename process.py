@@ -269,7 +269,7 @@ class Process(object):
         self.FREQUENCY = []
         self.with_segment = True
         self.output_mode = 2
-        self.frame_count = 0
+        self.frame_count = 1
         self.signal_process_t = []
         self.tracking_process_t = []
         self.without_wd = False
@@ -372,7 +372,7 @@ class Process(object):
 
         # Start calculating at buffer_size and overlapping by buffer_size - 1
         if length >= self.buffer_size and need_run:
-            #print("frame count {} estimate : ".format(self.frame_count))
+            print("frame count {} estimate : ".format(self.frame_count))
             #print("all signal mean : " + str(float("{:.3f}".format(np.mean(self.RGB_signal_buffer)))))
             bpm_t0 = time.time()
             self.fps = float(length) / (self.t[-1] - self.t[0])
@@ -516,7 +516,7 @@ class Process(object):
         self.t = []
         self.count = 0
         self.hr_freq = 0
-        self.frame_count = 0
+        self.frame_count = 1
 
     def limit_bpm(self, PSD, Frequency, limit):
         idx = np.argmax(PSD)

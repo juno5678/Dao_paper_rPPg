@@ -3,9 +3,9 @@ import os
 #dataRoot = '../../dataset/paper_dataset'
 #savePath = './result/test_10s_1.csv'
 #dataPath = ['../dataset/paper_dataset/10s_path_gt.csv', '../dataset/PURE/', '../dataset/PURE_raw_dataset/']
-dataPath = ['../rPPG_dataset/paper_dataset/10s_path_gt.csv',
-            '../rPPG_dataset/PURE_raw_dataset/',
-            '../rPPG_dataset/PURE_784k/', '../dataset/PURE_979k/','../dataset/PURE_1223k/', '../dataset/PURE_1467k/']
+dataPath = ['../dataset/paper_dataset/10s_path_gt.csv',
+            '../dataset/PURE_raw_dataset/',
+            '../dataset/PURE_784k/', '../dataset/PURE_979k/','../dataset/PURE_1223k/', '../dataset/PURE_1467k/']
 dataset = ['CCUHR', 'PURE_image', 'PURE_video']
 bitrate = ['784k', '979k', '1223k', '1467k']
 adjust = "_p4_MIL_all_"
