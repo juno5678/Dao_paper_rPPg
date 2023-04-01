@@ -15,7 +15,9 @@ second = [6, 3, 2, 1]
 input_mode = 0
 process_mode = 0
 output_mode = 2
-for j in range(1, len(dataPath)-1):
+#for j in range(1, len(dataPath)-1):
+for j in range(len(dataPath)-1, 0, -1):
+    #print(j)
     for i in second:
         # realsense video
         #if input_mode == 3:
@@ -24,11 +26,11 @@ for j in range(1, len(dataPath)-1):
         #    dataPath = ''.join(dataPath)
 
         if j == 1:
-            savePath = "../result/DAO/"+dataset[j]+adjust+bitrate[j-1]+"_10s.csv"
-            input_mode = j
+            savePath = "../result/DAO/"+dataset[j]+adjust+"_10s.csv"
+            input_mode = 1
         elif j > 1:
-            savePath = "../result/DAO/"+dataset[2]+adjust+bitrate[j-1]+"_10s.csv"
-            input_mode = 2
+            savePath = "../result/DAO/"+dataset[2]+adjust+bitrate[j-2]+"_10s.csv"
+            input_mode = 0
 
         # change second
         savePath = list(savePath)
