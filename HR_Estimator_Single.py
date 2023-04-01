@@ -89,12 +89,12 @@ class DAO_HRE():
             if self.input_mode == 0 or self.input_mode == 1:
                 self.max_input_size = signal_input.frame_length
 
-                # just use all frame
+                # prevent error with last few frame
                 if self.max_input_size % self.interal_frame == 0:
-                    estimate_times = np.floor(self.max_input_size / self.interal_frame) - 1
+                    estimate_times = np.floor(self.max_input_size / self.interal_frame) - 2
                 # has some frame didn't use
                 else:
-                    estimate_times = np.floor(self.max_input_size / self.interal_frame)
+                    estimate_times = np.floor(self.max_input_size / self.interal_frame) - 1
 
             if self.input_mode == 3 or self.input_mode == 4:  # has nir information
                 color_frame, nir_frame = signal_input.get_frame()  # Read frames from input
@@ -171,6 +171,6 @@ if __name__ == '__main__':
     HR_Estimator.set_process_mode(0)
     HR_Estimator.set_length(60)
     HR_Estimator.set_output(2)
-    HR_Estimator.set_input(1)  # set input 1 : image sequence
+    HR_Estimator.set_input(0)  # set input 1 : image sequence
     HR_Estimator.set_data_path(dirname)
     HR_Estimator.run()
