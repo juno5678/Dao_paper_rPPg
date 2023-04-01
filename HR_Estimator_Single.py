@@ -108,7 +108,7 @@ class DAO_HRE():
             #print("frame count in estimator : ", frame_count)
             if self.process_mode == 0: # RGB mode
                 bpm, color_face = self.process.run(color_frame)  # Run the main algorithm
-                #bpm, color_face = 0, None  # test
+                #bpm, color_face = 10, None  # test
             else:  # RGB + NIR or CIEa + CIEb +NIR mode
                 bpm, color_face, nir_face = self.process.run(color_frame, nir_frame)
 

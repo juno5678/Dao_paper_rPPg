@@ -105,7 +105,12 @@ def get_all_gt(gt_list, gt_path, input_max_length):
 def get_avg_gt(gt_list, gt_avg_list, window_size, interval):
     window_size *= 30
     max_length = len(gt_list)
-    for i in range(0, max_length-window_size+1-interval, interval):
+    if max_length % interval != 0:
+        estimate_end_frame = max_length-window_size+1-interval
+    else:
+        estimate_end_frame = max_length-window_size-interval
+
+    for i in range(0, estimate_end_frame, interval):
         #print(i)
         gt_avg_list.append(np.mean(gt_list[i:i+window_size]))
     print(" len of gt avg : ", len(gt_avg_list))
