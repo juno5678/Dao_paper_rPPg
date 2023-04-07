@@ -15,8 +15,9 @@ second = [6, 3, 2, 1]
 input_mode = 0
 process_mode = 0
 output_mode = 2
-#for j in range(1, len(dataPath)-1):
-for j in range(len(dataPath)-1, 0, -1):
+#for j in range(1, len(dataPath)):
+for j in range(2, 3):
+#for j in range(len(dataPath)-1, len(dataPath)-2, -1):
     #print(j)
     for i in second:
         # realsense video
