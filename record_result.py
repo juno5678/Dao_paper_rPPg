@@ -80,6 +80,13 @@ def parse_args(argv):
         help="time length used for estimate HR (default : %(default)s)",
     )
     parser.add_argument(
+        "-f",
+        "--file_num",
+        default=0,
+        type=int,
+        help="number of file (default : %(default)'s file)",
+    )
+    parser.add_argument(
         "-w",
         "--without_wd",
         action='store_true',
@@ -123,6 +130,7 @@ if __name__ == '__main__':
     root_directory = args.dataPath
     if args.save:
         result_path = args.savePath
+    file_num = args.file_num
     data_path = []
     gt_path = []
     gt_data = []
@@ -153,7 +161,8 @@ if __name__ == '__main__':
     HR_Estimator.set_length(args.second)
     HR_Estimator.process.without_wd = args.without_wd
     #print(data_path)
-    for i in range(0, len(data_path)):
+    # for i in range(0, len(data_path)):
+    for i in range(file_num, file_num+1):
     #for i in range(52, 53):
     #for i in range(0, 12):
     #for item in data_path:

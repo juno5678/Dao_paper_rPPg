@@ -8,16 +8,17 @@ dataPath = ['../dataset/paper_dataset/10s_path_gt.csv',
             '../dataset/PURE_784k/', '../dataset/PURE_979k/','../dataset/PURE_1223k/', '../dataset/PURE_1467k/']
 dataset = ['CCUHR', 'PURE_image', 'PURE_video']
 bitrate = ['784k', '979k', '1223k', '1467k']
-adjust = "_p4_MIL_all_"
+adjust = "_p4_MIL_red25_"
 #second = [1, 2, 3, 6]
 second = [6, 3, 2, 1]
 #second = [1]
 input_mode = 0
 process_mode = 0
 output_mode = 2
+file_num = 59
 #for j in range(1, len(dataPath)):
-for j in range(2, 3):
-#for j in range(len(dataPath)-1, len(dataPath)-2, -1):
+#for j in range(2, 3):
+for j in range(len(dataPath)-1, 0, -1):
     #print(j)
     for i in second:
         # realsense video
@@ -38,7 +39,8 @@ for j in range(2, 3):
         savePath[-7] = str(i)
         savePath = ''.join(savePath)
 
-        comment = 'python ./record_result.py -d ' + dataPath[j] + ' --savePath ' + savePath + ' -i ' + str(input_mode) + \
-                  ' -p ' + str(process_mode) + ' -o ' + str(output_mode) + ' -s ' + str(i*10) + ' --save'
-        os.system(comment)
+        for f in range(file_num):
+            comment = 'python ./record_result.py -d ' + dataPath[j] + ' --savePath ' + savePath + ' -i ' + str(input_mode) + \
+                      ' -p ' + str(process_mode) + ' -o ' + str(output_mode) + ' -s ' + str(i*10) + ' -f ' + str(f) + ' --save'
+            os.system(comment)
         #print(comment)
